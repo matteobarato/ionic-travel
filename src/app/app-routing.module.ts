@@ -16,7 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'step', loadChildren: './step/step.module#StepPageModule' },
   { path: 'location', loadChildren: './location/location.module#LocationPageModule' }
 ];
 
