@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Platform } from '@ionic/angular';
 import {
   GoogleMaps,
   GoogleMap,
@@ -15,13 +16,17 @@ import {
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{
   map: GoogleMap;
 
-  constructor() {}
+  constructor(private plt:Platform) {
+  }
 
-  ionViewDidLoad() {
-    this.loadMap();
+  ngOnInit() {
+    this.plt.ready().then(_=>{
+      console.info('Platform ready!')
+      this.loadMap();
+    })
   }
 
   loadMap() {
