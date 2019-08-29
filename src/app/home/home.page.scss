@@ -4,15 +4,21 @@
 }
 #map_canvas{
   background: #999999;
+  border-radius: 1em;
 }
 ion-content {
   position : absolute; 
   top : 0;
   left : 0;
   height: 100vh;
-  width: 100vw;
 }
 ion-toolbar {
   --background: transparent;
   --ion-color-base: transparent !important;
+}
+ion-item{
+  --ion-background-color:transparent;
+}
+input.searchbar-input.sc-ion-searchbar-md {
+  border-radius: 1em;
 }

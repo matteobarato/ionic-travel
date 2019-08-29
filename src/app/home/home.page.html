@@ -3,9 +3,13 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-item lines="none" slot="start">
+      <ion-title>
+        Home
+      </ion-title>
+    </ion-item>
+    <ion-searchbar [(value)]="search_value" showCancelButton="focus" animated debounce="500" (ionChange)="onChangeSearch($event)"
+      placeholder="Search places"></ion-searchbar>
     <ion-item lines="none" slot="end" routerLink="/profile">
       <ion-avatar>
         <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
@@ -15,29 +19,54 @@
 </ion-header>
 
 <ion-content fullscreen>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-lg-6>
-        <div id="map_canvas" style="height: 100%; width:100%; min-width:500px;">
-          <ion-slides pager="true">
-            <ion-slide *ngFor="let i of [0,1,2,3,4]">
-              <ion-card button="true">
-                <img src="/assets/shapes.svg" alt="" />
-                <ion-card-header>
-                  <ion-card-subtitle>DESTINATION</ion-card-subtitle>
-                  <ion-card-title>Marrakesch, MR</ion-card-title>
-                </ion-card-header>
-                <ion-card-content>
-                  <p>Now that your app has been created, you'll want to start building out features and components.
-                    Check out some of the resources below for next steps.</p>
-                </ion-card-content>
-              </ion-card>
-            </ion-slide>
-          </ion-slides>
+  <ion-grid fixed style="height: 100%;">
+    <ion-row align-items-stretch style="height: 100%;">
+      <ion-col col-lg-6 style="height: 100%;">
+        <div id="map_canvas" style="height: 100%;">
+          <div style="position: relative">
+            <ion-row>
+              <ion-col>
+                <ion-slides pager="true">
+                  <ion-slide *ngFor="let i of [0,1,2,3,4]">
+                    <ion-card button="true">
+                      <ion-img src="/assets/shapes.svg" alt=""></ion-img>
+                      <ion-card-header>
+                        <ion-card-subtitle>DESTINATION</ion-card-subtitle>
+                        <ion-card-title>Marrakesch, MR</ion-card-title>
+                      </ion-card-header>
+                      <ion-card-content>
+                        <p>Now that your app has been created, you'll want to start building out features and
+                          components.
+                          Check out some of the resources below for next steps.</p>
+                      </ion-card-content>
+                    </ion-card>
+                  </ion-slide>
+                </ion-slides>
+                <code> Search value: {{search_value}} </code>
+              </ion-col>
+            </ion-row>
+          </div>
         </div>
       </ion-col>
-      <ion-col col-lg-6>
-
+      <ion-col col-md-6>
+        <ion-list>
+          <ion-item lines="full">
+              <h2><ion-input placeholder="Title" autocapitalize='on' autocorrect='on' debounce="500" maxlength="256"></ion-input></h2>
+              <ion-fab-button size="small" color="light" slot="end"><ion-icon name="more"></ion-icon></ion-fab-button>
+          </ion-item>
+          <ion-item lines="none">
+              <ion-slides options="{freeMode:true, slidesPerView:3, spaceBetween: 5," pager="false" scrollbar="true">
+                  <ion-slide *ngFor="let i of [0,1,2,3,4]; let index = index;">
+                    <ion-card>
+                      <img src="/assets/shapes.svg" alt=""/>
+                    </ion-card>
+                  </ion-slide>
+                </ion-slides>
+          </ion-item>
+          <ion-item lines="none">
+              <ion-textarea rows="6" placeholder="Write your notes here..."></ion-textarea>
+          </ion-item>
+        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>

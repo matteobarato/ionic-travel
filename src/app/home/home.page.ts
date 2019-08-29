@@ -7,9 +7,14 @@ import {
   GoogleMapOptions,
   CameraPosition,
   MarkerOptions,
+  PolylineOptions,
+  Polyline,
   Marker,
+  ILatLng,
   Environment
 } from '@ionic-native/google-maps';
+
+const COLOR_LINES = '#42A5F5';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +23,7 @@ import {
 })
 export class HomePage implements OnInit{
   map: GoogleMap;
+  search_value:string = '';
 
   constructor(private plt:Platform) {
   }
@@ -51,8 +57,8 @@ export class HomePage implements OnInit{
     this.map = GoogleMaps.create('map_canvas', mapOptions);
 
     let marker: Marker = this.map.addMarkerSync({
-      title: 'Ionic',
-      icon: 'blue',
+      title: 'Marrakesh',
+      icon: '#2196F3',
       animation: 'DROP',
       position: {
         lat: 43.0741904,
@@ -62,6 +68,24 @@ export class HomePage implements OnInit{
     marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
       alert('clicked');
     });
+  }
+
+  onChangeSearch(event){
+    if (event && event.target){
+      this.search_value = String(event.target.value)
+    }    
+  }
+
+  drawLine(LatLngs:ILatLng[]){
+    let options:PolylineOptions = {
+      points: LatLngs,
+      color: COLOR_LINES,
+      width: 10,
+      geodesic: true,
+      clickable: true
+
+    }
+    this.map.addPolyline(options)
   }
 
 }
